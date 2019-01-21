@@ -16,7 +16,11 @@
       <tr>
         <td><%= movie.name %></td>
         <!-- td><%= movie.tags.map{|t| t.name}.join(", ") %></td -->
-        <td><%= movie.tags.pluck(:name).join(", ") %>
+        <td>
+          <% movie.tags.pluck(:name).each do |name| %>
+            <%= name %> <a href="#"> <span class="badge badge-pill badge-primary">x</span></a>
+          <% end %>
+
           <%= form_tag(add_tag_movie_path(movie)) do %>
             <%= text_field_tag "name" %>
           <% end %>
