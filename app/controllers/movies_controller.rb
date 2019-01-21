@@ -1,5 +1,5 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy, :add_tag]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :add_tag, :remove_tag]
 
   # GET /movies
   # GET /movies.json
@@ -9,6 +9,12 @@ class MoviesController < ApplicationController
 
   def add_tag
     @movie.tags << Tag.new(name: params[:name])
+    redirect_to movies_path
+  end
+
+  def remove_tag
+    tag = Tag.find(params[:tag_id])
+    @movie.tags.delete(tag)
     redirect_to movies_path
   end
 

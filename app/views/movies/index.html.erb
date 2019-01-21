@@ -17,8 +17,8 @@
         <td><%= movie.name %></td>
         <!-- td><%= movie.tags.map{|t| t.name}.join(", ") %></td -->
         <td>
-          <% movie.tags.pluck(:name).each do |name| %>
-            <%= name %> <a href="#"> <span class="badge badge-pill badge-primary">x</span></a>
+          <% movie.tags.each do |tag| %>
+            <%= tag.name %> <a href=" <%= remove_tag_movie_path(movie, tag) %>" data-method="delete"> <span class="badge badge-pill badge-primary">x</span></a>
           <% end %>
 
           <%= form_tag(add_tag_movie_path(movie)) do %>
