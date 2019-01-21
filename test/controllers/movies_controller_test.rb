@@ -30,6 +30,14 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test "should delete tag" do
+    movie = movies(:one)
+    tag = tags(:one)
+    assert_difference('movie.tags.count', -1) do
+      delete remove_tag_movie_path(movie, tag)
+    end
+  end
+
   test "should show movie" do
     get movie_url(@movie)
     assert_response :success

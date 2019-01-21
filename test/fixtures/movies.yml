@@ -2,6 +2,7 @@
 
 one:
   name: MyString
-
+  tags: one
+  
 two:
   name: MyString
