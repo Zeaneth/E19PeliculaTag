@@ -23,6 +23,13 @@ class MoviesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to movie_url(Movie.last)
   end
 
+  test "should add tag" do
+    movie = movies(:one)
+    assert_difference('movie.tags.count') do
+      post add_tag_movie_path(movie), params: {name: 'un tag' }
+    end
+  end
+
   test "should show movie" do
     get movie_url(@movie)
     assert_response :success

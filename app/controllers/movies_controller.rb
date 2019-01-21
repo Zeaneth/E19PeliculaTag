@@ -1,10 +1,15 @@
 class MoviesController < ApplicationController
-  before_action :set_movie, only: [:show, :edit, :update, :destroy]
+  before_action :set_movie, only: [:show, :edit, :update, :destroy, :add_tag]
 
   # GET /movies
   # GET /movies.json
   def index
     @movies = Movie.limit(10).order('name DESC')
+  end
+
+  def add_tag
+    @movie.tags << Tag.new(name: params[:name])
+    redirect_to movies_path
   end
 
   # GET /movies/1
